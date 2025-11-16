@@ -1,0 +1,82 @@
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+
+    .product-container {
+      display: flex;
+      max-width: 900px;
+      margin: 0 auto;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .product-image {
+      flex: 1;
+      background-color: #eee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .product-image img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .product-details {
+      flex: 1;
+      padding: 20px;
+    }
+
+    .product-title {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .product-price {
+      font-size: 20px;
+      color: #2a9d8f;
+      margin-bottom: 20px;
+    }
+
+    .add-to-cart {
+      background-color: #e76f51;
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    .add-to-cart:hover {
+      background-color: #d65a3f;
+    }
+  </style>
+</head>
+<body>
+  <div class="product-container">
+    <div class="product-image">
+      <img src="{{ product.featured_image | image_url: width: 800 }}" alt="Product Image">
+    </div>
+    <div class="product-details">
+      <h1 class="product-title">{{ product.title }}</h1>
+      <p class="product-price">{{ product.price | money_with_currency }}</p>
+      <p class="product-description">
+        {{ product.description | strip_html | truncate: 150, '...' }}
+      </p>
+
+      {% form 'product', product %}    
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        <button class="add-to-cart">Add to Cart</button>
+      {% endform %}
+    </div>
+  </div>

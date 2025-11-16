@@ -1,0 +1,17 @@
+<div class="slider" id="slider-{{ section.id }}">
+    <div class="slides">
+        {% for block in section.blocks %}
+            {% if block.settings.image %}
+                <div class="slide">
+                    <img src="{{ block.settings.image | img_url: width: 1000}}" alt="{{ block.settings.alt | escape }}">
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        {% if section.blocks.size > 1 %}
+            <button>prev</button>
+        {% endif %}
+
+            <button>next</button>
+    </div>
+</div>
