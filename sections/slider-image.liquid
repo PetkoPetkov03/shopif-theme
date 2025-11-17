@@ -1,17 +1,71 @@
-<div class="slider" id="slider-{{ section.id }}">
-    <div class="slides">
-        {% for block in section.blocks %}
-            {% if block.settings.image %}
+<section class="slider-section">
+    <div class="slider-container">
+        <div class="slider" data-slider>
+            {% for block in section.blocks %}
                 <div class="slide">
-                    <img src="{{ block.settings.image | img_url: width: 1000}}" alt="{{ block.settings.alt | escape }}">
+                    <img src="{{ block.settings.image | img_url: 'master' }}" alt="{{ block.settings.alt_text | escape }}">
                 </div>
-            {% endif %}
-        {% endfor %}
-
-        {% if section.blocks.size > 1 %}
-            <button>prev</button>
-        {% endif %}
-
-            <button>next</button>
+            {% endfor %}
+        </div>
+        <button class="slider-button prev" aria-label="Previous slide" data-slider-prev>&#10094;</button>
+        <button class="slider-button next" aria-label="Next slide" data-slider-next>&#10095;</button>
     </div>
-</div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const slider = document.querySelector('[data-slider]');
+        const prevButton = document.querySelector('[data-slider-prev]');
+        const nextButton = document.querySelector('[data-slider-next]');
+        let currentIndex = 0;
+
+        function updateSlider() {
+            const slides = slider.children;
+            const totalSlides = slides.length;
+            slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+            if (currentIndex < 0) currentIndex = totalSlides - 1;
+            if (currentIndex >= totalSlides) currentIndex = 0;
+        }
+
+        prevButton.addEventListener('click', function () {
+            currentIndex--;
+            updateSlider();
+        });
+
+        nextButton.addEventListener('click', function () {
+            currentIndex++;
+            updateSlider();
+        });
+    });
+</script>
+
+{% schema %}
+{
+    "name": "Slider Image",
+    "settings": [],
+    "blocks": [
+        {
+            "type": "image_slide",
+            "name": "Image Slide",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image"
+                },
+                {
+                    "type": "text",
+                    "id": "alt_text",
+                    "label": "Alt Text"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Image Slider",
+            "category": "Image"
+        }
+    ]
+}
+{% endschema %}

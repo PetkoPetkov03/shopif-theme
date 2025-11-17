@@ -1,0 +1,20 @@
+{% assign collection_handle = 'neckless' %}
+{% assign collection = collections[collection_handle] %}
+
+{% if collection and collection.products.size > 0 %}
+    <div class="collection-products">
+        <h2>Top 4 Most Expensive Products in {{ collection.title }}</h2>
+        {% assign sorted_products = collection.products | sort: 'price' | reverse %}
+        {% for product in sorted_products limit: 4 %}
+            <div class="product">
+                <a href="{{ product.url }}">
+                    <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
+                    <h3>{{ product.title }}</h3>
+                </a>
+                <p>{{ product.price | money_with_currency }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>No products found in the neckless collection.</p>
+{% endif %}
