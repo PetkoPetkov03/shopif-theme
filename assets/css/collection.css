@@ -1,0 +1,27 @@
+.collection-products {
+    display: flex;
+    justify-content: space-around;
+    gap: 1;
+    width: 100vw;
+    margin-top: 5vh;
+}
+
+.collection-products .product {
+    width: 20vw;
+    height: auto;
+}
+
+.collection-products .product img {
+    width: max-content;
+    height: max-content;
+    object-fit: cover;
+}
+
+.collection-products .product .product-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "iCiel Internacional" sans-serif;
+}

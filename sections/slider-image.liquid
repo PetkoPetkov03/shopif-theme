@@ -1,71 +1,48 @@
+<link rel="stylesheet" href="{{ 'css/slider.css' | asset_url }}">
+
 <section class="slider-section">
-    <div class="slider-container">
-        <div class="slider" data-slider>
-            {% for block in section.blocks %}
-                <div class="slide">
-                    <img src="{{ block.settings.image | img_url: 'master' }}" alt="{{ block.settings.alt_text | escape }}">
-                </div>
-            {% endfor %}
+  <div class="slider-container">
+    <div class="slider" data-slider>
+      {% for block in section.blocks %}
+        <div class="slide{% if forloop.first %} is-active{% endif %}">
+          <img src="{{ block.settings.image | img_url: 'master' }}" alt="{{ block.settings.alt_text | escape }}">
         </div>
-        <button class="slider-button prev" aria-label="Previous slide" data-slider-prev>&#10094;</button>
-        <button class="slider-button next" aria-label="Next slide" data-slider-next>&#10095;</button>
+      {% endfor %}
     </div>
+
+    <div class="indicators">
+        {% for block in section.blocks %}
+            <div class="slide-indicator{% if forloop.first %} is-active{% endif %}" data-slide-index="{{ forloop.index0 }}"></div>
+        {% endfor %}
+    </div>
+    <button class="slider-button prev" aria-label="Previous slide" data-slider-prev><svg width="51" height="15" viewBox="0 0 51 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M49.7283 7.99856C50.1148 7.60407 50.1083 6.97094 49.7138 6.58442L43.2853 0.285722C42.8908 -0.100798 42.2577 -0.0943379 41.8711 0.300151C41.4846 0.694639 41.4911 1.32777 41.8856 1.71429L47.5998 7.31313L42.001 13.0274C41.6145 13.4219 41.6209 14.055 42.0154 14.4416C42.4099 14.8281 43.043 14.8216 43.4296 14.4271L49.7283 7.99856ZM0.0203956 8.79865L49.0242 8.29865L49.0038 6.29876L-9.89158e-06 6.79876L0.0203956 8.79865Z" fill="white"/>
+</svg>
+</button>
+    <button class="slider-button next" aria-label="Next slide" data-slider-next><svg width="51" height="15" viewBox="0 0 51 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M49.7283 7.99856C50.1148 7.60407 50.1083 6.97094 49.7138 6.58442L43.2853 0.285722C42.8908 -0.100798 42.2577 -0.0943379 41.8711 0.300151C41.4846 0.694639 41.4911 1.32777 41.8856 1.71429L47.5998 7.31313L42.001 13.0274C41.6145 13.4219 41.6209 14.055 42.0154 14.4416C42.4099 14.8281 43.043 14.8216 43.4296 14.4271L49.7283 7.99856ZM0.0203956 8.79865L49.0242 8.29865L49.0038 6.29876L-9.89158e-06 6.79876L0.0203956 8.79865Z" fill="white"/>
+</svg>
+</button>
+  </div>
 </section>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const slider = document.querySelector('[data-slider]');
-        const prevButton = document.querySelector('[data-slider-prev]');
-        const nextButton = document.querySelector('[data-slider-next]');
-        let currentIndex = 0;
+<script src="{{ 'js/slider.js' | asset_url }}"></script>
 
-        function updateSlider() {
-            const slides = slider.children;
-            const totalSlides = slides.length;
-            slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-            if (currentIndex < 0) currentIndex = totalSlides - 1;
-            if (currentIndex >= totalSlides) currentIndex = 0;
-        }
-
-        prevButton.addEventListener('click', function () {
-            currentIndex--;
-            updateSlider();
-        });
-
-        nextButton.addEventListener('click', function () {
-            currentIndex++;
-            updateSlider();
-        });
-    });
-</script>
 
 {% schema %}
 {
-    "name": "Slider Image",
-    "settings": [],
-    "blocks": [
-        {
-            "type": "image_slide",
-            "name": "Image Slide",
-            "settings": [
-                {
-                    "type": "image_picker",
-                    "id": "image",
-                    "label": "Image"
-                },
-                {
-                    "type": "text",
-                    "id": "alt_text",
-                    "label": "Alt Text"
-                }
-            ]
-        }
-    ],
-    "presets": [
-        {
-            "name": "Image Slider",
-            "category": "Image"
-        }
-    ]
+  "name": "Slider Image",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "image_slide",
+      "name": "Image Slide",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "alt_text", "label": "Alt Text" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Image Slider", "category": "Image" }]
 }
 {% endschema %}

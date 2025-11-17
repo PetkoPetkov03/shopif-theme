@@ -1,0 +1,73 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "current": {
+    "sections": {
+      "slider-image": {
+        "type": "slider-image",
+        "blocks": {
+          "image_slide_wW3hqz": {
+            "type": "image_slide",
+            "settings": {
+              "image": "shopify://shop_images/f0ec6aa9b0c51cc30d3f52535c8fd34642534fd7.jpg",
+              "alt_text": "not found"
+            }
+          },
+          "image_slide_C3bTQC": {
+            "type": "image_slide",
+            "settings": {
+              "image": "shopify://shop_images/similar-image-as-the-other-uploaded-image-in-the-image-slide.png",
+              "alt_text": "not found"
+            }
+          }
+        },
+        "block_order": [
+          "image_slide_wW3hqz",
+          "image_slide_C3bTQC"
+        ],
+        "settings": {}
+      },
+      "collection": {
+        "type": "collection",
+        "settings": {}
+      },
+      "middle-component": {
+        "type": "middle-component",
+        "blocks": {
+          "image_block_iVT99h": {
+            "type": "image_block",
+            "settings": {
+              "image": "shopify://shop_images/85beb805518cb119076b686261c2cf7f020adedb.jpg"
+            }
+          },
+          "image_block_TbTCUQ": {
+            "type": "image_block",
+            "settings": {
+              "image": "shopify://shop_images/1423706919dca430c5fe92d0720f0b2bdc4e88bd.jpg"
+            }
+          },
+          "image_block_LjypEK": {
+            "type": "image_block",
+            "settings": {
+              "image": "shopify://shop_images/f672a8bf26d779366513d68e95afe32afcf12e83.jpg"
+            }
+          }
+        },
+        "block_order": [
+          "image_block_iVT99h",
+          "image_block_TbTCUQ",
+          "image_block_LjypEK"
+        ],
+        "settings": {}
+      }
+    },
+    "content_for_index": []
+  }
+}

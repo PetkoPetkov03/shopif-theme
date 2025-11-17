@@ -1,20 +1,25 @@
 {% assign collection_handle = 'neckless' %}
 {% assign collection = collections[collection_handle] %}
 
+<link rel="stylesheet" href="{{ 'css/collection.css' | asset_url }}">
+
 {% if collection and collection.products.size > 0 %}
-    <div class="collection-products">
-        <h2>Top 4 Most Expensive Products in {{ collection.title }}</h2>
-        {% assign sorted_products = collection.products | sort: 'price' | reverse %}
-        {% for product in sorted_products limit: 4 %}
-            <div class="product">
-                <a href="{{ product.url }}">
-                    <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
-                    <h3>{{ product.title }}</h3>
-                </a>
-                <p>{{ product.price | money_with_currency }}</p>
-            </div>
-        {% endfor %}
+  <div class="collection-products">
+    {% assign sorted_products = collection.products | sort: 'price' | reverse %}
+    {% for product in sorted_products limit: 4 %}
+    <div class="product">
+        <div class="product-image-wrap">
+        {% if product.tags contains 'badge_Best Seller' %}
+          <span class="badge bestseller-badge">Best seller</span>
+        {% endif %}
+        <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
+        </div>
+        <h3 class="product-title">{{ product.title }}</h3>
+      </a>
+      <p>{{ product.price | money }}</p>
     </div>
+    {% endfor %}
+  </div>
 {% else %}
-    <p>No products found in the neckless collection.</p>
+  <p>No products found in the neckless collection.</p>
 {% endif %}

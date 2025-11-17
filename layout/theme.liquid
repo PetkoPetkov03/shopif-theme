@@ -1,12 +1,13 @@
 <html>
   <head>
     {{ content_for_header }}
-    <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
+    <link rel="stylesheet" href="{{ 'css/theme.css' | asset_url }}">
   </head>
 
   <body>
-
-    {% section 'header' %}
-    {{ content_for_layout }}
+    <div class="site-wrapper">
+      {% sections 'header-group' %}
+      {{ content_for_layout }}
+    </div>
   </body>
 </html>
