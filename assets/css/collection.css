@@ -1,21 +1,63 @@
+.collection-container {
+    width: 100%;
+}
+
 .collection-products {
-    display: flex;
-    justify-content: space-around;
-    gap: 1;
-    margin-top: 5vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-self: center;
+  overflow: hidden;
 }
 
 .collection-products .product {
+  cursor: pointer;
+  text-align: justify;
+  position: relative;
+  flex: 1 1 200px;
+    max-width: 300px
 }
 
 .collection-products .product img {
-    object-fit: cover;
+  object-fit: cover;
 }
 
 .collection-products .product .product-title {
-    font-size: 1.2rem;
+  font-size: 1.2rem; white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 80%;
+  display: block;
+}
+
+.bestseller-badge {
+    background-color: #222222;
+    color: white;
+    padding: 5px 10px;
+    font-size: 0.8rem;
     font-weight: bold;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    border-radius: 5px;
+    position: absolute;
+    z-index: 1;
+}
+
+.collection-products .product .price {
+    color: #848484;
+}
+
+.collection-container {
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 40px;
+}
+
+.collection-container .filter {
+    align-self: center;
+    width: 60%;
+    margin-bottom: 40px;
+    border: 3px solid black;
+    border-radius: 5px;
+    justify-self: center;
+    text-align: center;
 }

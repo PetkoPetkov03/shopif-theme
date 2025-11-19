@@ -54,7 +54,7 @@
 .indicators {
     position: absolute;
     bottom: 15px;
-    left: 2%;
+    left: 5%;
     transform: translateX(-50%);
     display: flex;
     justify-content: center;
@@ -63,8 +63,8 @@
 }
 
 .slide-indicator {
-    width: 1vw;
-    height: 1vw;
+    width: 1.5rem;
+    height: 1.5rem;
     border: 4px solid white;
     border-radius: 50%;
     margin: 0 5px;

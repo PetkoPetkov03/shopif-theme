@@ -7,7 +7,14 @@
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempor tincidunt posuere. Nam tempus, leo ac tempus
       hendrerit.
     </p>
-    <svg class="text-cirlce" width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      class="text-circle"
+      width="160"
+      height="160"
+      viewBox="0 0 160 160"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path d="M70.3138 145.72L71.1956 153.657L69.984 153.428L69.4374 147.376L69.3592 147.361L66.6812 152.806L65.4501 152.575L64.9389 146.549L64.8607 146.534L62.1669 151.956L60.9552 151.728L64.6463 144.653L65.7798 144.866L66.3423 150.942L66.4596 150.964L69.1803 145.506L70.3138 145.72Z" fill="#222222"/>
       <path d="M55.8318 141.623C56.5194 141.885 57.055 142.263 57.4387 142.757C57.8181 143.252 58.0386 143.826 58.1004 144.477C58.1579 145.13 58.0482 145.823 57.7713 146.554C57.4943 147.286 57.1171 147.88 56.6395 148.336C56.1577 148.795 55.6175 149.089 55.0189 149.219C54.416 149.351 53.7925 149.295 53.1482 149.049C52.7766 148.908 52.433 148.706 52.1176 148.444C51.8021 148.182 51.5485 147.854 51.3568 147.462C51.1639 147.073 51.0654 146.617 51.0614 146.094C51.0573 145.571 51.1814 144.977 51.4337 144.31L51.6097 143.845L57.1105 145.941L56.7514 146.889L52.3657 145.218C52.2131 145.621 52.1575 146.012 52.1989 146.389C52.2372 146.766 52.3688 147.101 52.5938 147.396C52.8157 147.69 53.1249 147.912 53.5214 148.063C53.9581 148.23 54.377 148.265 54.7782 148.17C55.1751 148.076 55.5238 147.89 55.8244 147.611C56.125 147.332 56.3498 146.995 56.4988 146.601L56.7382 145.969C56.9424 145.43 57.0225 144.937 56.9787 144.491C56.9306 144.047 56.7762 143.664 56.5156 143.341C56.2539 143.022 55.9015 142.778 55.4586 142.609C55.1706 142.499 54.8952 142.44 54.6324 142.432C54.3653 142.426 54.1155 142.473 53.8829 142.572C53.6492 142.675 53.439 142.832 53.2522 143.045L52.3056 142.344C52.5532 142.027 52.8603 141.782 53.2268 141.61C53.5921 141.44 53.9971 141.353 54.4418 141.349C54.8853 141.348 55.3486 141.439 55.8318 141.623Z" fill="#222222"/>
       <path d="M43.9091 147.45L44.3222 146.656C44.4477 146.415 44.6256 146.181 44.856 145.954C45.0819 145.728 45.3451 145.531 45.6456 145.363C45.9416 145.196 46.256 145.08 46.5888 145.015L46.9139 145.769C46.5912 145.937 46.2881 146.128 46.0046 146.342C45.7166 146.558 45.4877 146.829 45.3179 147.155L44.8956 147.967L43.9091 147.45Z" fill="#222222"/>
@@ -52,26 +59,32 @@
 
   <div class="content-right-side">
     <div class="graphic-middle">
-    {% for block in section.blocks %}
-      <div class="middle-image">
-        <img
-          class="rimage"
-          src="{{ block.settings.image | img_url: 'large' }}"
-          alt="{{ block.settings.image.alt | escape }}"
-        >
-      </div>
-    {% endfor %}
+      {% for block in section.blocks %}
+        <div class="middle-image">
+          {% if block.settings.image %}
+            <div style="height:60%; max-height:60vh; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+              <img
+                src="{{ block.settings.image | img_url: '800x' }}"
+                alt=""
+                style="max-width:100%; max-height:45vh; width:auto; height:auto; object-fit:contain; display:block;"
+              >
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+
     <div class="triangle">
-    {% comment %} <svg width="1166" height="590" viewBox="0 0 1166 590" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path opacity="0.15" d="M454.583 4.72e-05L1311 283.321L1311 590L0 590L454.583 4.72e-05Z" fill="url(#paint0_linear_1_30)"/>
-      <defs>
-      <linearGradient id="paint0_linear_1_30" x1="1310.9" y1="803.715" x2="351.258" y2="320.339" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#C5EAF6" stop-opacity="0"/>
-      <stop offset="0.720657" stop-color="#7AB1C2" stop-opacity="0.7"/>
-      </linearGradient>
-      </defs>
-    </svg> {% endcomment %}
-  </div>
+      <svg class="triangle-svg" width="1166" height="590" viewBox="0 0 1166 590" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path opacity="0.15" d="M454.583 4.72e-05L1311 283.321L1311 590L0 590L454.583 4.72e-05Z" fill="url(#paint0_linear_1_30)"/>
+        <defs>
+        <linearGradient id="paint0_linear_1_30" x1="1310.9" y1="803.715" x2="351.258" y2="320.339" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#C5EAF6" stop-opacity="0"/>
+        <stop offset="0.720657" stop-color="#7AB1C2" stop-opacity="0.7"/>
+        </linearGradient>
+        </defs>
+      </svg>
+    </div>
   </div>
 </div>
 

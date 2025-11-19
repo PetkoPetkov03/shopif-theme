@@ -3,23 +3,56 @@
 
 <link rel="stylesheet" href="{{ 'css/collection.css' | asset_url }}">
 
-{% if collection and collection.products.size > 0 %}
-  <div class="collection-products">
-    {% assign sorted_products = collection.products | sort: 'price' | reverse %}
-    {% for product in sorted_products limit: 4 %}
-    <div class="product">
-        <div class="product-image-wrap">
-        {% if product.tags contains 'badge_Best Seller' %}
-          <span class="badge bestseller-badge">Best seller</span>
-        {% endif %}
-        <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
-        </div>
-        <h3 class="product-title">{{ product.title }}</h3>
-      </a>
-      <p>{{ product.price | money }}</p>
+<div class="collection-container">
+    <input type="text" id="titleFilter" class="filter" placeholder="Search products by title...">
+
+  {% if collection and collection.products.size > 0 %}
+    <div class="collection-products">
+      {% assign sorted_products = collection.products | sort: 'price' | reverse %}
+      {% for product in sorted_products limit: 4 %}
+        <form class="product" method="post" action="/cart/add">
+          {% if product.tags contains 'badge_Best Seller' %}
+            <span class="badge bestseller-badge">Best seller</span>
+          {% endif %}
+          <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+          <div class="product-card">
+            <div class="product-image-wrap">
+              <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
+            </div>
+            <h3 class="product-title">{{ product.title }}</h3>
+            <p class="price">{{ product.price | money }}</p>
+          </div>
+        </form>
+      {% endfor %}
     </div>
-    {% endfor %}
-  </div>
-{% else %}
-  <p>No products found in the neckless collection.</p>
-{% endif %}
+  {% else %}
+    <p>No products found in the neckless collection.</p>
+  {% endif %}
+</div>
+
+<script>
+  document.querySelectorAll('.product').forEach(function (form) {
+    form.addEventListener('click', function (event) {
+      event.preventDefault();
+      form.submit();
+    });
+  });
+
+  const input = document.getElementById('titleFilter');
+  const products = document.querySelectorAll('.product');
+
+  input.addEventListener('input', function() {
+    const query = input.value.toLowerCase();
+
+    console.log('Filtering products with query:', query);
+
+    products.forEach(product => {
+      const title = product.querySelector('.product-title').textContent.toLowerCase();
+      if (title.includes(query)) {
+        product.style.display = '';
+      } else {
+        product.style.display = 'none';
+      }
+    });
+  });
+</script>
